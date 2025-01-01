@@ -1,79 +1,99 @@
+import back.Problem18258;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class Main {
-    public static class Problem12789 {
-        /**
-         * 1 2 3 4 5
-         * 1 5 3 2 4
-         * 5 4 1 3 2
-         * 5 4 3 2 1
-         * <p>
-         * <p>
-         * 1 2 4 5 6
-         * 1 2 5 3 4
-         * 1 3 4 5 6
-         */
+    public static class Problem18258 {
 
 
-        public String solution() throws IOException {
+        public void solution() throws IOException {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            Queue<Integer> waitingUserStack = new LinkedList<>();
-            Stack<Integer> stockUserStack = new Stack<>();
+            int count = Integer.parseInt(br.readLine());
 
-            final int totalCount = Integer.parseInt(br.readLine());
-
-            Arrays.stream(br.readLine().split(" "))
-                    .mapToInt(Integer::parseInt)
-                    .forEach(waitingUserStack::add);
-
-            int receiveUser = 1;
-            while (!waitingUserStack.isEmpty()) {
-                int waitUser = waitingUserStack.peek();
-                if(waitUser == receiveUser){
-                    waitingUserStack.poll();
-                    receiveUser++;
-                    continue;
-                }
-
-
-                if(stockUserStack.isEmpty()){
-                    stockUserStack.add(waitingUserStack.poll());
-                }
-                else{
-                    Integer stockUser = stockUserStack.peek();
-                    if(stockUser == receiveUser){
-                        stockUserStack.pop();
-                        receiveUser++;
-                    }
-                    else{
-                        stockUserStack.add(waitingUserStack.poll());
-                    }
-                }
+            QueueSolution queueSolution = new QueueSolution();
+            for(int i=0; i < count; i++){
+                String[] commandSplit = br.readLine().split(" ");
+                Integer number = commandSplit.length > 1 ? Integer.parseInt(commandSplit[1]) : null;
+                queueSolution.command(commandSplit[0],number);
             }
 
-            //대기열과 비교대상을 비교한다
-            while(!stockUserStack.isEmpty()){
-                if(stockUserStack.pop() == receiveUser){
-                    receiveUser++;
-                }else{
-                    return "Sad";
-                }
-            }
+            System.out.println(queueSolution.sb.toString());
             br.close();
-            return "Nice";
+        }
+
+
+
+        public static class QueueSolution {
+            private final ArrayDeque<Integer> queue = new ArrayDeque<>();
+            private final StringBuilder sb;
+
+            public QueueSolution() {
+                sb =  new StringBuilder();
+            }
+
+            public void command(String command, Integer number){
+                switch (command) {
+                    case "push" : push(number); break;
+                    case "pop" : pop(); break;
+                    case "size" : size(); break;
+                    case "empty" : empty(); break;
+                    case "front" : front(); break;
+                    case "back" : back(); break;
+                }
+            }
+
+            private void push(Integer number){
+                this.queue.add(number);
+            }
+
+            private void pop(){
+                if(this.queue.isEmpty()){
+                    sb.append(-1).append("\n");
+                    return;
+                }
+
+                sb.append(queue.poll()).append("\n");
+            }
+
+            private void size(){
+                sb.append(this.queue.size()).append("\n");
+            }
+
+            private void empty(){
+                if(this.queue.isEmpty()){
+                    sb.append(1).append("\n");
+                    return;
+                }
+                sb.append(0).append("\n");
+            }
+
+
+            private void front(){
+                if(this.queue.isEmpty()){
+                    sb.append(-1).append("\n");
+                    return;
+                }
+                sb.append(queue.getFirst()).append("\n");
+            }
+
+            private void back(){
+                if(this.queue.isEmpty()){
+                    sb.append(-1).append("\n");
+                    return;
+                }
+                sb.append(queue.getLast()).append("\n");
+            }
+
         }
     }
 
     public static void main(String[] args) throws IOException {
-        Problem12789 problem12789 = new Problem12789();
-        System.out.println(problem12789.solution());
+        Problem18258 problem12789 = new Problem18258();
+        problem12789.solution();
     }
 }
 
