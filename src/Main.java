@@ -1,98 +1,33 @@
-import back.Problem18258;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
-    public static class Problem18258 {
 
-
+    public static class Problem2164 {
         public void solution() throws IOException {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-            int count = Integer.parseInt(br.readLine());
-
-            QueueSolution queueSolution = new QueueSolution();
-            for(int i=0; i < count; i++){
-                String[] commandSplit = br.readLine().split(" ");
-                Integer number = commandSplit.length > 1 ? Integer.parseInt(commandSplit[1]) : null;
-                queueSolution.command(commandSplit[0],number);
+            int number = Integer.parseInt(br.readLine());
+            Queue<Integer> queue = new LinkedList<>();
+            for(int i=1; i<=number; i++){
+                queue.add(i);
             }
 
-            System.out.println(queueSolution.sb.toString());
+            while (queue.size() > 1){
+                queue.poll();
+                Integer target = queue.poll();
+                queue.add(target);
+            }
+            System.out.println(queue.poll());
             br.close();
-        }
-
-
-
-        public static class QueueSolution {
-            private final ArrayDeque<Integer> queue = new ArrayDeque<>();
-            private final StringBuilder sb;
-
-            public QueueSolution() {
-                sb =  new StringBuilder();
-            }
-
-            public void command(String command, Integer number){
-                switch (command) {
-                    case "push" : push(number); break;
-                    case "pop" : pop(); break;
-                    case "size" : size(); break;
-                    case "empty" : empty(); break;
-                    case "front" : front(); break;
-                    case "back" : back(); break;
-                }
-            }
-
-            private void push(Integer number){
-                this.queue.add(number);
-            }
-
-            private void pop(){
-                if(this.queue.isEmpty()){
-                    sb.append(-1).append("\n");
-                    return;
-                }
-
-                sb.append(queue.poll()).append("\n");
-            }
-
-            private void size(){
-                sb.append(this.queue.size()).append("\n");
-            }
-
-            private void empty(){
-                if(this.queue.isEmpty()){
-                    sb.append(1).append("\n");
-                    return;
-                }
-                sb.append(0).append("\n");
-            }
-
-
-            private void front(){
-                if(this.queue.isEmpty()){
-                    sb.append(-1).append("\n");
-                    return;
-                }
-                sb.append(queue.getFirst()).append("\n");
-            }
-
-            private void back(){
-                if(this.queue.isEmpty()){
-                    sb.append(-1).append("\n");
-                    return;
-                }
-                sb.append(queue.getLast()).append("\n");
-            }
-
         }
     }
 
+
     public static void main(String[] args) throws IOException {
-        Problem18258 problem12789 = new Problem18258();
+        Problem2164 problem12789 = new Problem2164();
         problem12789.solution();
     }
 }
