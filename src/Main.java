@@ -1,3 +1,5 @@
+import back.Problem11866;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,28 +8,39 @@ import java.util.Queue;
 
 public class Main {
 
-    public static class Problem2164 {
+    public static class Problem11866 {
         public void solution() throws IOException {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            int number = Integer.parseInt(br.readLine());
+            String[] array = br.readLine().split(" ");
+            final int N = Integer.parseInt(array[0]);
+            final int K = Integer.parseInt(array[1]);
+
             Queue<Integer> queue = new LinkedList<>();
-            for(int i=1; i<=number; i++){
+            for(int i=1; i<=N; i++){
                 queue.add(i);
             }
 
-            while (queue.size() > 1){
-                queue.poll();
-                Integer target = queue.poll();
-                queue.add(target);
+
+
+            StringBuilder builder = new StringBuilder("<");
+            while(queue.size() >= 1){
+                for(int i=1; i<K; i++){
+                    queue.add(queue.poll());
+                }
+
+                builder.append(queue.poll());
+                if(queue.size() != 0){
+                    builder.append(", ");
+                }
             }
-            System.out.println(queue.poll());
-            br.close();
+
+            System.out.println(builder.append(">"));
         }
     }
 
 
     public static void main(String[] args) throws IOException {
-        Problem2164 problem12789 = new Problem2164();
+        Problem11866 problem12789 = new Problem11866();
         problem12789.solution();
     }
 }
