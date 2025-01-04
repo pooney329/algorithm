@@ -1,46 +1,82 @@
-import back.Problem11866;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayDeque;
+
+
 
 public class Main {
 
-    public static class Problem11866 {
+    public static class Problem28279 {
+
+
         public void solution() throws IOException {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            String[] array = br.readLine().split(" ");
-            final int N = Integer.parseInt(array[0]);
-            final int K = Integer.parseInt(array[1]);
 
-            Queue<Integer> queue = new LinkedList<>();
-            for(int i=1; i<=N; i++){
-                queue.add(i);
+            int count = Integer.parseInt(br.readLine());
+            ArrayDeque<Integer> arrayDeque = new ArrayDeque<>();
+            for (int i = 1; i <= count; i++) {
+                String[] commands = br.readLine().split(" ");
+                Integer command1 = Integer.parseInt(commands[0]) ;
+                Integer command2 = commands.length > 1 ? Integer.parseInt(commands[1]) : null;
+                deck(arrayDeque, command1, command2);
+
             }
 
-
-
-            StringBuilder builder = new StringBuilder("<");
-            while(queue.size() >= 1){
-                for(int i=1; i<K; i++){
-                    queue.add(queue.poll());
-                }
-
-                builder.append(queue.poll());
-                if(queue.size() != 0){
-                    builder.append(", ");
-                }
-            }
-
-            System.out.println(builder.append(">"));
         }
+
+        public void deck(ArrayDeque<Integer> arrayDeque, Integer command1, Integer command2) {
+            switch (command1) {
+                case 1:
+                    arrayDeque.addFirst(command2);
+                    break;
+                case 2:
+                    arrayDeque.addLast(command2);
+                    break;
+                case 3:
+                    if (!arrayDeque.isEmpty()) {
+                        System.out.println(arrayDeque.pollFirst());
+                    } else {
+                        System.out.println(-1);
+                    }
+                    break;
+
+                case 4:
+                    if (!arrayDeque.isEmpty()) {
+                        System.out.println(arrayDeque.pollLast());
+                    } else {
+                        System.out.println(-1);
+                    }
+                    break;
+                case 5:
+                    System.out.println(arrayDeque.size());
+                    break;
+
+                case 6:
+                    System.out.println(arrayDeque.isEmpty() ? 1 : 0);
+                    break;
+                case 7:
+                    if (!arrayDeque.isEmpty()) {
+                        System.out.println(arrayDeque.peekFirst());
+                    } else {
+                        System.out.println(-1);
+                    }
+                    break;
+                case 8:
+                    if (!arrayDeque.isEmpty()) {
+                        System.out.println(arrayDeque.peekLast());
+                    } else {
+                        System.out.println(-1);
+                    }
+                    break;
+            }
+        }
+
     }
 
 
     public static void main(String[] args) throws IOException {
-        Problem11866 problem12789 = new Problem11866();
+        Problem28279 problem12789 = new Problem28279();
         problem12789.solution();
     }
 }
