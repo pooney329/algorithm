@@ -1,75 +1,82 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.Stack;
+import java.util.StringTokenizer;
 
 
 public class Main {
 
-    public static class Problem2346 {
+    public static class Problem24511 {
 
+        public static class QueueStack {
+            private Collection<Integer> collection;
+            private Integer type;
 
-        public static class Balloon {
-            private final int position;
-            private final int number;
-
-            public Balloon(int position, int number) {
-                this.position = position;
-                this.number = number;
+            public QueueStack(Collection<Integer> collection, Integer type) {
+                this.collection = collection;
+                this.type = type;
             }
 
-            public int getPosition() {
-                return position;
+            public void add(Integer number) {
+                this.collection.add(number);
             }
 
-            public int getNumber() {
-                return number;
+            public Integer addPop(Integer number) {
+                this.collection.add(number);
+                if (type == 0) {
+                    return ((LinkedList<Integer>) this.collection).poll();
+                } else {
+                    return ((Stack<Integer>) this.collection).pop();
+                }
             }
+
         }
+
 
         public void solution() throws IOException {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            Integer count = Integer.parseInt(br.readLine()) - 1;
+            int structureCount = Integer.parseInt(br.readLine());
 
-            String[] numberArray = br.readLine().split(" ");
+            QueueStack[] queueStack = new QueueStack[structureCount];
 
-            Deque<Balloon> arrayDeque = new ArrayDeque<>();
-            Integer target = Integer.parseInt(numberArray[0]);
-            for (int i = 1; i < numberArray.length; i++) {
-                arrayDeque.add(new Balloon(i+1 , Integer.parseInt(numberArray[i])));
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            StringTokenizer st2 = new StringTokenizer(br.readLine());
+            for (int i = 0; i < queueStack.length; i++) {
+                int type = Integer.parseInt(st.nextToken());
+                queueStack[i] = type == 0 ? new QueueStack(new LinkedList<Integer>(), type)
+                        : new QueueStack(new Stack<Integer>(), type);
+
+                int number = Integer.parseInt(st2.nextToken());
+                queueStack[i].add(number);
             }
 
 
-            StringBuilder sb = new StringBuilder("1");
-            while (count-- > 0) {
-                //오른쪽?
-                if (target > 0) {
-                    for (int i = 1; i < target; i++) {
-                        arrayDeque.add(arrayDeque.poll());
-                    }
-                    Balloon targetBalloon = arrayDeque.poll();
-                    target = targetBalloon.getNumber();
-                    sb.append(" ").append(targetBalloon.getPosition());
+            StringBuilder sb = new StringBuilder();
+            int command = Integer.parseInt(br.readLine());
+            StringTokenizer st3 = new StringTokenizer(br.readLine());
+            for(int i=0; i<command; i++){
+                Integer nextValue = Integer.parseInt(st3.nextToken());
+                for (QueueStack qs : queueStack) {
+                    nextValue = qs.addPop(nextValue);
+                }
+                if (sb.length() == 0) {
+                    sb.append(nextValue);
                 } else {
-                    //왼쪽?
-                    for (int i = 1; i < Math.abs(target); i++) {
-                        arrayDeque.addFirst(arrayDeque.pollLast());
-                    }
-                    Balloon targetBalloon = arrayDeque.pollLast();
-                    target = targetBalloon.getNumber();
-                    sb.append(" ").append(targetBalloon.getPosition());
+                    sb.append(" ").append(nextValue);
                 }
             }
+
             System.out.println(sb);
         }
     }
 
 
-
     public static void main(String[] args) throws IOException {
-        Problem2346 problem12789 = new Problem2346();
+        Problem24511 problem12789 = new Problem24511();
         problem12789.solution();
     }
 }
