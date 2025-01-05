@@ -8,7 +8,7 @@ import java.util.Deque;
 
 
 /**
- *  {@link https://www.acmicpc.net/status?user_id=hookcu329&problem_id=2346&from_mine=1}
+ *  {@link https://www.acmicpc.net/problem/2346}
  */
 public class Problem2346 {
 
