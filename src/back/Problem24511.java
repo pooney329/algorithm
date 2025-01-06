@@ -5,69 +5,40 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
+/**
+ * {@link https://www.acmicpc.net/problem/24511}
+ */
 public class Problem24511 {
-
-    public static class QueueStack {
-        private Collection<Integer> collection;
-        private Integer type;
-
-        public QueueStack(Collection<Integer> collection, Integer type) {
-            this.collection = collection;
-            this.type = type;
-        }
-
-        public void add(Integer number) {
-            this.collection.add(number);
-        }
-
-        public Integer addPop(Integer number) {
-            this.collection.add(number);
-            if (type == 0) {
-                return ((LinkedList<Integer>) this.collection).poll();
-            } else {
-                return ((Stack<Integer>) this.collection).pop();
-            }
-        }
-
-    }
-
 
     public void solution() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int structureCount = Integer.parseInt(br.readLine());
 
-        QueueStack[] queueStack = new QueueStack[structureCount];
+        int[] structureArray = new int[structureCount];
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < queueStack.length; i++) {
-            int type = Integer.parseInt(st.nextToken());
-            queueStack[i] = type == 0 ? new QueueStack(new LinkedList<Integer>(), type)
-                    : new QueueStack(new Stack<Integer>(), type);
+        StringTokenizer stArray = new StringTokenizer(br.readLine());
+        StringTokenizer initNumArray = new StringTokenizer(br.readLine());
+
+        Deque<Integer> deque = new ArrayDeque<>();
+        for (int i = 0; i < structureCount; i++) {
+            Integer structure = Integer.parseInt(stArray.nextToken());
+            int num = Integer.parseInt(initNumArray.nextToken());
+            if (structure == 0) {
+                deque.add(num);
+            }
         }
 
-        StringTokenizer st2 = new StringTokenizer(br.readLine());
-        for (int i = 0; i < queueStack.length; i++) {
-            int number = Integer.parseInt(st2.nextToken());
-            queueStack[i].add(number);
-        }
 
         StringBuilder sb = new StringBuilder();
-        int command = Integer.parseInt(br.readLine());
-        StringTokenizer st3 = new StringTokenizer(br.readLine());
-        while (command-- > 0) {
-            Integer nextValue = Integer.parseInt(st3.nextToken());
-            for(QueueStack qs : queueStack){
-                    nextValue = qs.addPop(nextValue);
-            }
-            if(sb.isEmpty()){
-                sb.append(nextValue);
-            }
-            else{
-                sb.append(" ").append(nextValue);
-            }
-        }
+        int M = Integer.parseInt(br.readLine());
+        StringTokenizer st2 = new StringTokenizer(br.readLine());
+        while (M-- > 0) {
+            deque.addFirst(Integer.parseInt(st2.nextToken()));
 
+            sb.append(deque.pollLast()).append(" ");
+        }
         System.out.println(sb);
+
     }
 }

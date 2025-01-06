@@ -8,28 +8,7 @@ public class Main {
 
     public static class Problem24511 {
 
-        public static class QueueStack {
-            private Deque<Integer> collection;
-            private Integer type;
 
-            public QueueStack(Deque<Integer> collection, Integer type) {
-                this.collection = collection;
-                this.type = type;
-            }
-
-            public void add(Integer number) {
-                this.collection.add(number);
-            }
-
-            public Integer addPop(Integer number) {
-                this.collection.add(number);
-                if (type == 0) {
-                    return this.collection.pollFirst();
-                }
-                return this.collection.pollLast();
-            }
-
-        }
 
 
         public void solution() throws IOException {
