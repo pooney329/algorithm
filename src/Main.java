@@ -8,18 +8,19 @@ import java.io.InputStreamReader;
 
 public class Main {
 
-    public static class Problem15439 {
+    public static class Problem24723 {
 
         public void solution() throws IOException {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             final Integer N = Integer.parseInt(br.readLine());
-            System.out.println(N * (N - 1));
+            System.out.println((int)Math.pow(2,N));
+
         }
     }
 
 
     public static void main(String[] args) throws IOException {
-        Problem15439 problem = new Problem15439();
+        Problem24723 problem = new Problem24723();
         problem.solution();
     }
 }
