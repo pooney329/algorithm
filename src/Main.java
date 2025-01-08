@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 
 public class Main {
 
-    public static class Problem10872 {
+    public static class Problem27433 {
 
         public void solution() throws IOException {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -13,7 +13,7 @@ public class Main {
             System.out.println(recursive(N));
         }
 
-        public int recursive(int num){
+        public long recursive(long num){
             if(num <= 1) return 1;
             return num * recursive(num-1);
         }
@@ -21,7 +21,7 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-        Problem10872 problem = new Problem10872();
+        Problem27433 problem = new Problem27433();
         problem.solution();
     }
 }
