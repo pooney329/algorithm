@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- *   타입이 중요한 문제이다. int타입의 경우 범위 초과하기 때문에 long 타입으로 해야한다.
+ *   타입이 중요한 문제이다. int타입의 경우 범위 초과하기 때문에 long 타입으로 해야한다..
  *  {@link https://www.acmicpc.net/problem/27433}
  */
 public class Problem27433 {
