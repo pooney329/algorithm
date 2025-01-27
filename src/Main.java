@@ -5,20 +5,41 @@ import java.io.InputStreamReader;
 
 public class Main {
 
+    public static class Problem25501 {
+        public static int count = 0;
+
+        public void solution() throws IOException {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            int num = Integer.parseInt(br.readLine());
+
+            for (int i = 0; i < num; i++) {
+                String val = br.readLine();
+                int palindrome = isPalindrome(val);
+                System.out.println(palindrome + " " + count);
+                count = 0;
+            }
+        }
+
+
+        public static int recursion(String s, int l, int r) {
+            count++;
+            if (l >= r) return 1;
+            else if (s.charAt(l) != s.charAt(r)) return 0;
+            else return recursion(s, l + 1, r - 1);
+        }
+
+        public static int isPalindrome(String s) {
+            return recursion(s, 0, s.length() - 1);
+        }
+    }
+
 
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int num = Integer.parseInt(br.readLine());
-        System.out.println(fibonacci(num));
+        new Problem25501().solution();
     }
 
 
-    public static int fibonacci(int num) {
-        if (num == 0 || num == 1) {
-            return num;
-        }
-        return fibonacci(num - 1) + fibonacci(num - 2);
-    }
+
 }
 
 
