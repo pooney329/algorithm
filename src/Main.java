@@ -5,39 +5,33 @@ import java.io.InputStreamReader;
 
 public class Main {
 
-    public static class Problem25501 {
-        public static int count = 0;
+
+    public static class Problem4779 {
 
         public void solution() throws IOException {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            int num = Integer.parseInt(br.readLine());
-
-            for (int i = 0; i < num; i++) {
-                String val = br.readLine();
-                int palindrome = isPalindrome(val);
-                System.out.println(palindrome + " " + count);
-                count = 0;
+            String input = "";
+            while((input = br.readLine()) != null) {
+                Integer num = Integer.parseInt(input);
+                System.out.println(recursive("-".repeat((int) Math.pow(3,num))));
             }
         }
 
-
-        public static int recursion(String s, int l, int r) {
-            count++;
-            if (l >= r) return 1;
-            else if (s.charAt(l) != s.charAt(r)) return 0;
-            else return recursion(s, l + 1, r - 1);
-        }
-
-        public static int isPalindrome(String s) {
-            return recursion(s, 0, s.length() - 1);
+        public static String recursive(String str){
+            if(str.equals("-") || str.isBlank()) return str;
+            int divide = str.length() / 3;
+            String left = str.substring(0,divide);
+            String middle = str.substring(divide, divide*2).replaceAll("-", " ");
+            String right = str.substring(divide*2 , divide*3);
+            return recursive(left) + recursive(middle) + recursive(right);
         }
     }
 
 
     public static void main(String[] args) throws IOException {
-        new Problem25501().solution();
-    }
+        new Problem4779().solution();
 
+    }
 
 
 }
