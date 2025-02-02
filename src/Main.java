@@ -57,6 +57,7 @@ public class Main {
         int count = 0;
         for (int i = x; i < x + N; i += size) {
             for (int j = y; j < y + N; j += size) {
+                System.out.println("( " + i + "," + j + "," +  size + ")");
                 count++;
                 if (count == 5) { // 공백 칸일 경우
                     star(i, j, size, true);
