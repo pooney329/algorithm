@@ -7,24 +7,12 @@ import java.util.Scanner;
 public class Main {
 
 
-    static char[][] arr;
-
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int N = in.nextInt();
+        int sum= -10;
+        int n = -2;
+        System.out.println(-(-sum / n));
+        System.out.println(sum / n);
 
-        arr = new char[N][N];
-
-        star(0, 0, N, false);
-
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                sb.append(arr[i][j]);
-            }
-            sb.append('\n');
-        }
-        System.out.print(sb);
     }
 
 }
