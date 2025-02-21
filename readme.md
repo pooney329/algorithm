@@ -3,9 +3,10 @@
 - https://www.acmicpc.net/problem/11729
 - https://www.acmicpc.net/problem/25501
 - https://www.acmicpc.net/problem/14888
+- https://www.acmicpc.net/problem/14889
 
 ## 풀어야 할 문제
-- Problem14889
+
 
 
 

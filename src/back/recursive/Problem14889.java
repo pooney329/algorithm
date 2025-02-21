@@ -3,24 +3,24 @@ package back.recursive;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
+
+/**
+ * {@link https://www.acmicpc.net/problem/14889}
+ */
 
 public class Problem14889 {
 
     static int[][] arr;
-    static int[] out;
     static boolean[] visited;
-    static boolean[] subVisited;
+    static int min = Integer.MAX_VALUE;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
         arr = new int[N][N];
-        out = new int[N];
         visited = new boolean[N];
-        subVisited = new boolean[N / 2];
 
         StringTokenizer st;
 
@@ -31,56 +31,42 @@ public class Problem14889 {
             }
         }
 
-        recursive(0, N);
+        recursive(0, 0, N);
+
         System.out.println(min);
     }
 
-
-    static int min = Integer.MAX_VALUE;
-    public static void recursive(int n, int limit) {
-        if (n == limit) {
-            int subLimit = limit / 2;
-            int[] first = Arrays.copyOfRange(out, 0, subLimit);
-            int[] two = Arrays.copyOfRange(out, subLimit, out.length);
-            int firstSum = subRecursive(first, new int[subLimit], 0, subLimit);
-            int twoSum = subRecursive(two, new int[subLimit], 0, subLimit);
-            min = Math.min(min,Math.abs(firstSum - twoSum));
+    public static void recursive(int start, int depth, int limit) {
+        if (depth == limit / 2) {
+            additionalRecursive();
             return;
         }
 
-        for (int i = 0; i < limit; i++) {
-            if (!visited[i]) {
+        for (int i = start; i < limit; i++) {
+            if (!visited[i] && min != 0) {
                 visited[i] = true;
-                out[n] = i + 1;
-                recursive(n + 1, limit);
+                recursive(i + 1, depth + 1, limit);
                 visited[i] = false;
             }
         }
 
     }
 
+    private static void additionalRecursive() {
+        int firstTeam = 0;
+        int secondTeam = 0;
 
-    public static int subRecursive(int[] subArr, int[] out, int n, int limit) {
-        if (n == limit) {
-            int sum = 0;
-            for(int i=0; i<out.length; i++) {
-                for(int j=0; j<out.length; j++) {
-                    if(i == j) continue;
-                    sum += arr[out[i]-1][out[j]-1];
+        for (int i = 0; i < visited.length - 1; i++) {
+            for (int j = i + 1; j < visited.length; j++) {
+                if (visited[i] && visited[j]) {
+                    firstTeam += arr[i][j] + arr[j][i];
+                } else if (!visited[i] && !visited[j]) {
+                    secondTeam += arr[i][j] + arr[j][i];
                 }
             }
-            return sum;
         }
-
-        for (int i = 0; i < limit; i++) {
-            if (!subVisited[i]) {
-                subVisited[i] = true;
-                out[n] = subArr[i];
-                int s = subRecursive(subArr, out, n + 1, limit);
-                subVisited[i] = false;
-                return s;
-            }
-        }
-        return 0;
+        min = Math.min(min, Math.abs(firstTeam - secondTeam));
     }
+
+
 }
