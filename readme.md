@@ -5,6 +5,7 @@
 - https://www.acmicpc.net/problem/14888
 - https://www.acmicpc.net/problem/14889
 - https://www.acmicpc.net/problem/9184
+- https://www.acmicpc.net/problem/1904
 
 ## 풀어야 할 문제
 
