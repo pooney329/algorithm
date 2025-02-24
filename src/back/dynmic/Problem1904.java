@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
+ * {@link https://www.acmicpc.net/problem/1904}
  * 모듈러연산이 핵심
  */
 
