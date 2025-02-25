@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 /**
  * {@link https://www.acmicpc.net/problem/9461}
+ * 재귀 방식과 반복문을 통한 풀이
  */
 public class Problem9461 {
 
@@ -24,7 +25,8 @@ public class Problem9461 {
             arr[0] = 0L;
             arr[1] = 1L;
             arr[2] = 1L;
-            System.out.println(fibonacci(target));
+//            System.out.println(fibonacci(target));
+            System.out.println(repeatFibonacci(target));
         }
     }
 
@@ -37,5 +39,23 @@ public class Problem9461 {
         return arr[n];
     }
 
+    public static long repeatFibonacci(int n) {
+        if(n == 1) return 1;
+        if(n == 2) return 1;
+
+        long sum = 0;
+        long first = 0;
+        long two = 1;
+        long three = 1;
+        for(long i = 3; i <= n; i++) {
+            sum = first + two;
+            first = two;
+            two = three;
+            three = sum;
+        }
+        return sum;
+    }
+
 
 }
+

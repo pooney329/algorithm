@@ -9,27 +9,11 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
+        // 1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12
 
 
-        dp[0] = 0;
-        dp[1] = 1;
-        dp[2] = 2;
-
-        // -1 로 초기화
-        for(int i = 3; i < dp.length; i++) {
-            dp[i] = -1;
-        }
-
-        System.out.println(Tile(N) % 15746);
 
     }
 
-    public static int Tile(int N) {
-
-        if(dp[N] == -1) {
-            dp[N] = (Tile(N - 1) + Tile((N - 2)));
-        }
-        return dp[N];
-    }
 
 }
