@@ -9,7 +9,7 @@
 - https://www.acmicpc.net/problem/9461
 
 ## 풀어야 할 문제
-- https://www.acmicpc.net/problem/1912
+- https://www.acmicpc.net/problem/1912 (임시)
 
 
 

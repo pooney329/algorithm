@@ -6,21 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 /**
-예제 입력 1
-10
-10 -4 3 1 5 6 -35 12 21 -1
-예제 출력 1
-33
-예제 입력 2
-10
-2 1 -4 3 4 -4 6 5 -5 1
-예제 출력 2
-14
-예제 입력 3
-5
--1 -2 -3 -4 -5
-예제 출력 3
--1
+ *
  */
 public class Problem1912 {
     static long[] numbers = new long[100];
