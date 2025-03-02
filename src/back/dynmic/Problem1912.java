@@ -6,42 +6,42 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 /**
- *  {@link https://www.acmicpc.net/problem/1912}
+ * {@link https://www.acmicpc.net/problem/1912}
  */
 public class Problem1912 {
     static long[] numbers = new long[100];
-    long MAX = Long.MIN_VALUE;
+    static Long [] dp = new Long[100];
+    static long MAX = Long.MIN_VALUE;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int count = Integer.parseInt(br.readLine());
 
         numbers = new long[count];
+        dp = new Long[count];
 
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < count; i++) {
             numbers[i] = Integer.parseInt(st.nextToken());
         }
 
-        long MAX = numbers[0];
-
-        long sum = numbers[0];
-        for(int i = 1; i < count; i++ ){
-            if(sum + numbers[i] <= numbers[i]){
-                sum = numbers[i];
-            }
-            else{
-                sum += numbers[i];
-            }
-            MAX = Math.max(sum, MAX);
-        }
-
+        dp[0] = numbers[0];
+        MAX = numbers[0];
+        recursive(count - 1);
         System.out.println(MAX);
     }
 
 
+    public static long recursive(int n) {
 
 
+        if(dp[n] == null){
+            dp[n] = Math.max(recursive(n -1) + numbers[n], numbers[n]);
+
+            MAX = Math.max(dp[n], MAX);
+        }
+        return dp[n];
+    }
 
 
 }
