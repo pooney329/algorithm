@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 /**
- *
+ *  {@link https://www.acmicpc.net/problem/1912}
  */
 public class Problem1912 {
     static long[] numbers = new long[100];
@@ -25,12 +25,15 @@ public class Problem1912 {
 
         long MAX = numbers[0];
 
+        long sum = numbers[0];
         for(int i = 1; i < count; i++ ){
-            if(MAX + numbers[i] <= numbers[i]){
-                MAX = numbers[i];
-                continue;
+            if(sum + numbers[i] <= numbers[i]){
+                sum = numbers[i];
             }
-            MAX = MAX + numbers[i];
+            else{
+                sum += numbers[i];
+            }
+            MAX = Math.max(sum, MAX);
         }
 
         System.out.println(MAX);

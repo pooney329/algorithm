@@ -7,9 +7,11 @@
 - https://www.acmicpc.net/problem/9184
 - https://www.acmicpc.net/problem/1904
 - https://www.acmicpc.net/problem/9461
+- https://www.acmicpc.net/problem/1912
 
 ## 풀어야 할 문제
-- https://www.acmicpc.net/problem/1912 (임시)
+
+
 
 
 
