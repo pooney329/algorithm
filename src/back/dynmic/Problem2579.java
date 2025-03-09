@@ -30,7 +30,7 @@ public class Problem2579 {
 
         dp[0] = numberArray[0];
         dp[1] = numberArray[1];
-        dp[2] = Math.max(dp[0], dp[1]);
+        dp[2] = Math.max(dp[0], dp[1]) + numberArray[2];
         dp[3] = Math.max(dp[0] + numberArray[2] , dp[0] + numberArray[1]) + numberArray[3];
 
         System.out.println(recursive(count - 1));
@@ -38,12 +38,19 @@ public class Problem2579 {
 
 
     public static int recursive(int n){
-        System.out.println("n : " + n);
-        if(n < 0) return 0;
+
+        if(n < 0) {
+            System.out.println("not n :: " + n);
+            return 0;
+        };
        if(dp[n] == 0) {
-           dp[n] = Math.max(recursive(n-3) + numberArray[n-1] , recursive(n-3) + numberArray[n-2]) + numberArray[n];
+           int s = recursive(n - 3);
+           dp[n] = Math.max(s + numberArray[n-1] , s+ numberArray[n-2]) + numberArray[n];
        }
+        System.out.println(n + "n" + " :: " + dp[n]);
        return dp[n];
     }
+
+
 
 }
