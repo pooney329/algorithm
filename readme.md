@@ -12,6 +12,7 @@
 
 ## 풀어야 할 문제
 - https://www.acmicpc.net/problem/2579
+- https://www.acmicpc.net/problem/10986
 
 
 
