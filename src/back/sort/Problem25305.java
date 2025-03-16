@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.StringTokenizer;
 
 /**
@@ -18,13 +17,12 @@ public class Problem25305 {
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
         st = new StringTokenizer(br.readLine());
-        Integer [] array = new Integer[N];
+        int [] array = new int[N];
         for(int i = 0; i < N; i++){
             array[i] = Integer.parseInt(st.nextToken());
         }
 
-        Arrays.sort(array, Collections.reverseOrder());
+        Arrays.sort(array);
 
-        System.out.println(array[K-1]);
-    }
+        System.out.println(array[N-K]);    }
 }
