@@ -9,11 +9,12 @@
 - https://www.acmicpc.net/problem/9461
 - https://www.acmicpc.net/problem/1912
 - https://www.acmicpc.net/problem/1149
+- https://www.acmicpc.net/problem/1018 (체스)
 
 ## 풀어야 할 문제
 - https://www.acmicpc.net/problem/2579
 - https://www.acmicpc.net/problem/10986
-- https://www.acmicpc.net/problem/1018 (체스)
+
   
 
 
