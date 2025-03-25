@@ -15,6 +15,7 @@
 - https://www.acmicpc.net/problem/2579
 - https://www.acmicpc.net/problem/10986
 - https://school.programmers.co.kr/learn/courses/30/lessons/42895?language=java
+- https://school.programmers.co.kr/learn/courses/30/lessons/42583(지나가는 트럭)
   
 
 
