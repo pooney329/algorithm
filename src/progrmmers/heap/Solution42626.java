@@ -1,7 +1,10 @@
 package progrmmers.heap;
 
-import java.util.Arrays;
+import java.util.PriorityQueue;
 
+/**
+ * @{link https://school.programmers.co.kr/learn/courses/30/lessons/42626}
+ */
 public class Solution42626 {
 
 
@@ -13,19 +16,22 @@ public class Solution42626 {
 
     public static int solution(int[] scoville, int K) {
         int answer = 0;
-        while(scoville.length > 1){
-            Arrays.sort(scoville);
-            if(scoville[0] >= K){
-                break;
-            }
-            answer++;
-            int[] temp = new int[scoville.length-1];
-            temp[0] = scoville[0] + (scoville[1] * 2);
-            for(int i=2; i<scoville.length; i++){
-                temp[i-1] = scoville[i];
-            }
-            scoville = temp;
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        for (int j : scoville) {
+            heap.add(j);
         }
-        return scoville[0] < K ? -1 : answer;
+
+        if(heap.peek() >= K){
+            return 0;
+        }
+
+        while (heap.size() >= 2){
+            if(heap.peek() >= K) break;
+            answer++;
+            heap.add(heap.poll() + (heap.poll() * 2));
+        }
+
+        return heap.peek() >= K ? answer : -1;
+
     }
 }
