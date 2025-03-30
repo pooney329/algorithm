@@ -2,6 +2,9 @@ package progrmmers.sort;
 
 import java.util.Arrays;
 
+/**
+ *  {@link https://school.programmers.co.kr/learn/courses/30/lessons/42747?language=java}
+ */
 public class Solution42747 {
 
     public static void main(String[] args) {
@@ -23,7 +26,7 @@ public class Solution42747 {
         int max = citations[citations.length-1];
 
         for (int k = max; k > 0; k--) {
-            int index = 0;
+            int index = -1;
             for (int i = citations.length - 1; i >= 0; i--) {
                    if(citations[i] / k > 0){
                        continue;
