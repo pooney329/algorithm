@@ -14,7 +14,7 @@
 - https://school.programmers.co.kr/learn/courses/30/lessons/1844 (게임 맵 최단거리)
 - https://school.programmers.co.kr/learn/courses/30/lessons/42628 (이중우선순위큐)
 
-## 풀어야 할 문제
+### 풀어야 할 문제
 - https://www.acmicpc.net/problem/2579
 - https://www.acmicpc.net/problem/10986
 - https://school.programmers.co.kr/learn/courses/30/lessons/42895?language=java
