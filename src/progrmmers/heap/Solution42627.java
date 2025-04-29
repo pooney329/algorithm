@@ -1,6 +1,8 @@
 package progrmmers.heap;
 
+import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * 작업의 소요시간이 짧은 것, 작업의 요청 시각이 빠른 것, 작업의 번호가 작은 것 순으로 우선순위가 높
@@ -10,7 +12,7 @@ public class Solution42627 {
 
     public static void main(String[] args) {
         Solution42627 solution42627 = new Solution42627();
-        int[][] jobs = new int[][]{{0, 3}, {1, 9}, {3, 5}};
+        int[][] jobs = new int[][]{{1, 2}, {4, 2}, {7, 9}};
         System.out.println(solution42627.solution(jobs));
     }
 
@@ -22,11 +24,13 @@ public class Solution42627 {
             if (job1.getJobTime() != job2.getJobTime()) {
                 return job1.getJobTime() - job2.getJobTime();
             } else if (job1.requestTime != job2.requestTime) {
-                return job1.getJobTime() - job2.getJobTime();
+                return job1.getRequestTime() - job2.getRequestTime();
             } else {
                 return job1.getNo() - job2.getNo();
             }
         });
+
+        Queue<Job> excuteQueue = new LinkedList<>();
 
         for (int i = 0; i < jobs.length; i++) {
             jobPriorityQueue.add(new Job(i, jobs[i][0], jobs[i][1]));
@@ -34,21 +38,27 @@ public class Solution42627 {
 
         int i = 0;
         while (!jobPriorityQueue.isEmpty()) {
-            Job waitJob = jobPriorityQueue.peek();
-
-            //완료 된 잡
-            if (waitJob.getRequestTime() <= i && waitJob.getJobTime() == 0) {
-                waitJob.setFinishTime(i - waitJob.requestTime);
-                answer += waitJob.getFinishTime();
-                jobPriorityQueue.poll();
-                System.out.println(waitJob.getFinishTime());
+            if(jobPriorityQueue.peek().getRequestTime() > i){
+                i++;
                 continue;
             }
 
-            //진행중인 잡
-            waitJob.minusJobTime();
-            i++;
+            if(excuteQueue.isEmpty() && jobPriorityQueue.peek().getRequestTime() <= i){
+                Job job = jobPriorityQueue.poll();
+                excuteQueue.add(job);
+                continue;
+            }
 
+
+
+            Job executeJob = excuteQueue.peek();
+            executeJob.minusJobTime();
+
+            if(executeJob.getJobTime() == 0){
+                Job job = excuteQueue.poll();
+                answer += i - job.requestTime;
+            }
+            i++;
         }
 
 
