@@ -1,26 +1,13 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
+package progrmmers.search;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
 
-public class Main {
-
-    final static int Red = 0;
-    final static int Green = 1;
-    final static int Blue = 2;
-
-    static int[][] Cost;
-    static int[][] DP;
-
-    public static void main(String[] args) throws IOException {
-        Main main = new Main();
-        int[] answer = {1,3,2,4,2};
-        System.out.println(Arrays.toString(main.solution(answer)));
-    }
-
+/**
+ * {@link https://school.programmers.co.kr/learn/courses/30/lessons/42840}
+ */
+public class Solution42840 {
     public int[] solution(int[] answers) {
         int[] one = {1, 2, 3, 4, 5};
         int[] two = {2, 1, 2, 3, 2, 4, 2, 5};
@@ -43,19 +30,17 @@ public class Main {
         int maxValue = Arrays.stream(answerList).max().getAsInt();
 
         List<Integer> list = new ArrayList<>();
-        for(int i=0; i < answerList.length; i++){
-            if(maxValue == answerList[i]){
-                list.add(i+1);
+        for (int i = 0; i < answerList.length; i++) {
+            if (maxValue == answerList[i]) {
+                list.add(i + 1);
             }
         }
 
         int[] result = new int[list.size()];
-        for(int i=0; i<result.length; i++){
+        for (int i = 0; i < result.length; i++) {
             result[i] = list.get(i);
         }
 
         return result;
     }
-
-
 }
