@@ -14,38 +14,24 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Main main = new Main();
-        int n = 3;
-//        int[][] computers = {
-//                {1, 1, 0}, {1, 1, 0}, {0, 0, 1}
-//        };
+        int[][] sizes = {{60, 50}, {30, 70}, {60, 30}, {80, 40}};
+        System.out.println(main.solution(sizes));;
 
-        int[][] computers = {{1, 1, 0}, {1, 1, 1}, {0, 1, 1}};
-        System.out.println(main.solution(n, computers));
     }
 
-    public int solution(int n, int[][] computers) {
+    public int solution(int[][] sizes) {
         int answer = 0;
 
-        boolean[] visited = new boolean[n];
-
-        for(int i=0; i<n; i++){
-            if(!visited[i]){
-                visited[i] = true;
-                search(computers, i, visited);
-                answer++;
-            }
+        int maxWidth = 0;
+        int maxHeight = 0;
+        for(int[] sizeArray : sizes){
+            int width = sizeArray[0];
+            int height = sizeArray[1];
+            maxWidth = Math.max(maxWidth, Math.max(width,height));
+            maxHeight = Math.max(maxHeight,Math.min(width,height));
         }
-        return answer;
+        return maxWidth * maxHeight;
     }
 
-    public void search(int[][] computers, int index, boolean[] visited){
-        for(int i=0; i<computers[index].length; i++){
-            int v = computers[index][i];
-            if(!visited[i] && v == 1){
-                visited[i] = true;
-                search(computers, i, visited);
-            }
-        }
-    }
 
 }

@@ -28,5 +28,17 @@ public class Solution86491 {
         }
         return maxWidth * maxHeight;
     }
+    //두번째 풀이 방법
+    public int solution2(int[][] sizes) {
+        int maxWidth = 0;
+        int maxHeight = 0;
+        for(int[] sizeArray : sizes){
+            int width = sizeArray[0];
+            int height = sizeArray[1];
+            maxWidth = Math.max(maxWidth, Math.max(width,height));
+            maxHeight = Math.max(maxHeight,Math.min(width,height));
+        }
+        return maxWidth * maxHeight;
+    }
 
 }
