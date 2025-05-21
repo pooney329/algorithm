@@ -1,3 +1,6 @@
+
+`sol` -> 다시 풀 었는데 해결한 문제
+
 ## 다시 풀어봐야 하는 문제
 - https://www.acmicpc.net/problem/2447
 - https://www.acmicpc.net/problem/11729
