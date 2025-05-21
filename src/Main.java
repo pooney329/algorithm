@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
 
@@ -17,45 +14,35 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Main main = new Main();
-        int[] answer = {1,3,2,4,2};
-        System.out.println(Arrays.toString(main.solution(answer)));
+        int[] scoville = {1, 2, 3, 9, 10, 12};
+        int k = 7;
+
+
+        System.out.println((main.solution(scoville,k)));
     }
 
-    public int[] solution(int[] answers) {
-        int[] one = {1, 2, 3, 4, 5};
-        int[] two = {2, 1, 2, 3, 2, 4, 2, 5};
-        int[] three = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+    public int solution(int[] scoville, int K) {
 
-        int[] answerList = new int[3];
-        for (int i = 0; i < answers.length; i++) {
-            if (one[i % one.length] == answers[i]) {
-                answerList[0]++;
-            }
-            if (two[i % two.length] == answers[i]) {
-                answerList[1]++;
-            }
-            if (three[i % three.length] == answers[i]) {
-                answerList[2]++;
-            }
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Comparator.naturalOrder());
+        for(int sco : scoville){
+            priorityQueue.add(sco);
         }
 
 
-        int maxValue = Arrays.stream(answerList).max().getAsInt();
-
-        List<Integer> list = new ArrayList<>();
-        for(int i=0; i < answerList.length; i++){
-            if(maxValue == answerList[i]){
-                list.add(i+1);
-            }
+        int count = 0;
+        while(!priorityQueue.isEmpty()){
+            Integer target = priorityQueue.poll();
+            if(target >= K) break;
+            if(priorityQueue.isEmpty()) return -1;
+            int mix = target + (priorityQueue.poll() * 2);
+            priorityQueue.add(mix);
+            count++;
         }
 
-        int[] result = new int[list.size()];
-        for(int i=0; i<result.length; i++){
-            result[i] = list.get(i);
-        }
-
-        return result;
+        return count;
     }
+
+
 
 
 }
