@@ -1,66 +1,86 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
 
-    final static int Red = 0;
-    final static int Green = 1;
-    final static int Blue = 2;
-
-    static int[][] Cost;
-    static int[][] DP;
 
     public static void main(String[] args) throws IOException {
         Main main = new Main();
 
-        String [] op = {"I -45", "I 653", "D 1", "I -642", "I 45", "I 97", "D 1", "D -1", "I 333"};
-        System.out.println(Arrays.toString(main.solution(op)));
-    }
-
-    public int[] solution(String[] operations) {
-        int[] answer = {};
-
-        //두개이 우선순위 큐를 준비
-        PriorityQueue<Integer> orderQueue = new PriorityQueue<>();
-        PriorityQueue<Integer> reverseQueue = new PriorityQueue<>(Collections.reverseOrder());
-
-        for(String op : operations) {
-            String[] splitOperation = op.split(" ");
-            String command = splitOperation[0];
-            Integer number = Integer.parseInt(splitOperation[1]);
-
-            if(command.equals("I")){
-                orderQueue.add(number);
-                reverseQueue.add(number);
-            }
-            else if(command.equals("D")){
-                if(number == 1) {
-                    reverseQueue.poll();
-                    orderQueue.clear();;
-                    orderQueue.addAll(reverseQueue);
-                }
-                else {
-                    orderQueue.poll();
-                    reverseQueue.clear();;
-                    reverseQueue.addAll(orderQueue);
-                }
-            }
-        }
-
-        if(orderQueue.size() <= 1 || reverseQueue.size() <= 1){
-            return new int[]{0,0};
-        }
-
-        return new int[]{reverseQueue.poll(), orderQueue.poll()};
+        int[][] ss = new int[][]{{1, 0, 1, 1, 1}, {1, 0, 1, 0, 1}, {1, 0, 1, 1, 1}, {1, 1, 1, 0, 1}, {0, 0, 0, 0, 1}};
+        System.out.println(main.solution(ss));
     }
 
 
+    boolean[][] visited;
+    int[][] maps;
 
+    public int solution(int[][] maps) {
+        int answer = 0;
 
+        //상하좌우
+        int[] row = {1, -1, 0, 0};
+        int[] col = {0, 0, -1, 1};
+        visited = new boolean[maps.length + 1][maps.length + 1];
+        this.maps = maps;
+        //queue를
+        Queue<Position> queue = new LinkedList<>();
+        queue.add(new Position(0, 0, 1));
 
+        while (!queue.isEmpty()) {
+            Position extractTarget = queue.poll();
 
+            if (extractTarget.getRow() == maps.length - 1 && extractTarget.getCol() == maps.length - 1) {
+                return extractTarget.count;
+            }
+
+            for (int i = 0; i < row.length; i++) {
+                int nextRow = extractTarget.getRow() + row[i];
+                int nextCol = extractTarget.getCol() + col[i];
+                if (isAvailable(nextRow, nextCol)) {
+                    visited[nextRow][nextCol] = true;
+                    queue.add(new Position(nextRow, nextCol, extractTarget.count + 1));
+                }
+            }
+        }
+        return -1;
+    }
+
+    public boolean isAvailable(int row, int col) {
+        if (
+                (row >= 0 && row < maps.length)
+                        && (col >= 0 && col < maps.length)
+                        && maps[row][col] == 1
+                        && !visited[row][col]) {
+            return true;
+        }
+        return false;
+    }
+
+    public static class Position {
+        private int row;
+        private int col;
+        private int count;
+
+        public Position(int row, int col, int count) {
+            this.row = row;
+            this.col = col;
+            this.count = count;
+        }
+
+        public int getRow() {
+            return row;
+        }
+
+        public int getCol() {
+            return col;
+        }
+
+        public int getCount() {
+            return count;
+        }
+    }
 
 
 }
