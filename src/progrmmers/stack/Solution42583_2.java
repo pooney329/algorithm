@@ -1,27 +1,9 @@
-import com.sun.jdi.Value;
+package progrmmers.stack;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class Main {
-
-
-    public static void main(String[] args) throws IOException {
-        Main main = new Main();
-
-        int bridge_length = 100;
-        int weight = 100;
-        int[] truck_weights = {10,10,10,10,10,10,10,10,10,10};
-
-//        int bridge_length = 2;
-//        int weight = 10;
-//        int[] truck_weights = {7,4,5,6};
-
-        System.out.println(main.solution(bridge_length, weight, truck_weights));
-
-    }
-
+public class Solution42583_2 {
 
     public int solution(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
@@ -61,7 +43,7 @@ public class Main {
             result[0] = result[0] + 1;
         }
 
-            return result[0];
+        return result[0];
     }
 
 
@@ -78,6 +60,4 @@ public class Main {
             this.time = this.time - 1;
         }
     }
-
-
 }
