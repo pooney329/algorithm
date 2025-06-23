@@ -11,8 +11,8 @@
 - https://www.acmicpc.net/problem/1904
 - https://www.acmicpc.net/problem/9461
 - https://www.acmicpc.net/problem/1912
-- https://www.acmicpc.net/problem/1149
-- https://www.acmicpc.net/problem/1018 (체스)
+- https://www.acmicpc.net/problem/1149 -> no sol
+- https://www.acmicpc.net/problem/1018 (체스) -> sol
 - https://school.programmers.co.kr/learn/courses/30/lessons/42626 (더 맵게) -> sol 
 - https://school.programmers.co.kr/learn/courses/30/lessons/1844 (게임 맵 최단거리)
 - https://school.programmers.co.kr/learn/courses/30/lessons/42628 (이중우선순위큐) -> sol
