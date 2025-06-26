@@ -17,24 +17,25 @@ public class Problem2346_2 {
         }
 
         StringBuilder sb = new StringBuilder();
-        while (!balloonArrayDeque.isEmpty()) {
+
+        while(count --> 0) {
             Balloon balloon = balloonArrayDeque.poll();
-            sb.append(balloon.position);
-            if (balloon.number > 0) {
-                for (int i = 1; i < balloon.number; i++) {
-                    if (balloonArrayDeque.isEmpty()) break;
-                    balloonArrayDeque.add(balloonArrayDeque.poll());
+            if(balloon == null) break;
+            sb.append(sb.length() == 0? balloon.position : " " +balloon.position);
+            if(balloon.number > 0){
+                for(int i=1; i<balloon.number; i++){
+                    if(balloonArrayDeque.isEmpty()) break;
+                    balloonArrayDeque.addLast(balloonArrayDeque.pollFirst());
                 }
             }
-            else{
-                    for (int i = 1; i < Math.abs(balloon.number); i++) {
-                    if (balloonArrayDeque.isEmpty()) break;
+            else {
+                for(int i=1; i<=Math.abs(balloon.number); i++){
+                    if(balloonArrayDeque.isEmpty()) break;
                     balloonArrayDeque.addFirst(balloonArrayDeque.pollLast());
                 }
             }
         }
         System.out.println(sb);
-
     }
 
 
