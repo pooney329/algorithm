@@ -18,6 +18,7 @@
 - https://school.programmers.co.kr/learn/courses/30/lessons/42628 (이중우선순위큐) -> sol
 - https://school.programmers.co.kr/learn/courses/30/lessons/42860 (조이스틱)
 - https://school.programmers.co.kr/learn/courses/30/lessons/42895 (n으로 표현)
+- https://school.programmers.co.kr/learn/courses/30/lessons/42898 (등굣길)
 
 --- 
 
