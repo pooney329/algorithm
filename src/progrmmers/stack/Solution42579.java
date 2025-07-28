@@ -3,7 +3,9 @@ package progrmmers.stack;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
+/**
+ * {@link https://school.programmers.co.kr/learn/courses/30/lessons/42579}
+ */
 public class Solution42579 {
     public static void main(String[] args) {
         Solution42579 Solution42579 = new Solution42579();
@@ -17,7 +19,7 @@ public class Solution42579 {
         Map<String,List<Music>> playsMap = new HashMap<>();
         for(int i=0; i < genres.length; i++) {
             String genre = genres[i];
-            genreCountMap.put(genre, genreCountMap.getOrDefault(genre, 0) +1);
+            genreCountMap.put(genre, genreCountMap.getOrDefault(genre, 0) + plays[i]);
             playsMap.putIfAbsent(genre, new ArrayList<>());
             playsMap.get(genre).add(new Music(i, plays[i]));
         }
