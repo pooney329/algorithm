@@ -20,45 +20,27 @@ public class Solution42586_2 {
     }
 
     public int[] solution(int[] progresses, int[] speeds) {
-        int[] answer = {};
-        Queue<Progress> queue = new LinkedList<>();
-        for(int i=0; i<progresses.length; i++) {
-            queue.add(new Progress(i, progresses[i], speeds[i]));
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i=0; i<progresses.length; i++){
+            queue.add((int) Math.ceil((100 - (double) progresses[i]) / speeds[i]));
         }
 
-        int day = 0;
-        List<Integer> deployList = new ArrayList<>();
-        while(!queue.isEmpty()) {
+        List<Integer> result = new ArrayList<>();
+        while(!queue.isEmpty()){
+            Integer progress = queue.poll();
             int count = 1;
-            Progress progress = queue.poll();
-            day += Math.ceil((100 - (progress.rate + progress.speed * day)) / (double)progress.speed);
             while(!queue.isEmpty()){
-                Progress nextProgress = queue.peek();
-                if((nextProgress.speed * day) + nextProgress.rate >= 100){
+                if(queue.peek() <= progress) {
                     queue.poll();
                     count++;
                     continue;
                 }
                 break;
             }
-            deployList.add(count);
+            result.add(count);
         }
-        answer = new int[deployList.size()];
-        for(int i=0; i<deployList.size(); i++){
-            answer[i] = deployList.get(i);
-        }
-        return answer;
+        return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
-    public static class Progress {
-        int index;
-        int rate;
-        int speed;
 
-        public Progress(int index, int rate, int speed) {
-            this.index = index;
-            this.rate = rate;
-            this.speed = speed;
-        }
-    }
 }
