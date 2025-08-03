@@ -1,6 +1,8 @@
 package progrmmers.stack;
 
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
@@ -11,7 +13,7 @@ public class Solution42587 {
         Solution42587 Solution42587 = new Solution42587();
         int[] priorities = {1, 1, 9, 1, 1, 1};
         int location = 0;
-        System.out.println(Solution42587.solution(priorities,location));
+        System.out.println(Solution42587.solution2(priorities,location));
     }
 
     public int solution(int[] priorities, int location) {
@@ -46,6 +48,28 @@ public class Solution42587 {
             else {
                 if(pro.index == location) {
                     return answer;
+                }
+            }
+        }
+        return answer;
+    }
+
+    public int solution2(int[] priorities, int location) {
+        int answer = 1;
+
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Comparator.reverseOrder());
+        //우선 순위 Q에 넣는다.
+        for(int priority : priorities){
+            priorityQueue.add(priority);
+        }
+        while(!priorityQueue.isEmpty()){
+            for(int i=0; i<priorities.length; i++){
+                if(!priorityQueue.isEmpty() &&priorities[i] == priorityQueue.peek()){
+                    if(i == location){
+                        return answer;
+                    }
+                    priorityQueue.poll();
+                    answer++;
                 }
             }
         }
