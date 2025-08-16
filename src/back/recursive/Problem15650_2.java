@@ -37,6 +37,5 @@ public class Problem15650_2 {
             result[depth] = i;
             recursive(i + 1, end, limit, depth + 1, result);
         }
-
     }
 }
