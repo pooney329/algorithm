@@ -23,7 +23,6 @@ public class Problem24416_2 {
         System.out.println(k + " " + j);
     }
 
-
     public static int fib(int n){
         if(n ==1 || n == 2) {
             k++;
