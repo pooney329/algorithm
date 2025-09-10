@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
- * {@link https://www.acmicpc.net/status?user_id=hookcu329&problem_id=7785&from_mine=1}
+ * {@link https://www.acmicpc.net/problem/7785}
  */
 public class Problem7785 {
     public static void main(String[] args) throws IOException {
